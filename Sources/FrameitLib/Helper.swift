@@ -1,6 +1,4 @@
 import AppKit
-import TSCBasic
-import TSCUtility
 
 // To expand a file path written as relative path
 public func absolutePath(_ relativePath: String) -> String {
@@ -13,8 +11,7 @@ public func pixel(_ point: CGFloat, scale: CGFloat = 2.0) -> CGFloat {
 }
 
 func logError(_ message: String) {
-    stderrStream <<< message <<< "\n"
-    stderrStream.flush()
+    print(message)
 }
 
 func convertToImage(view: NSView, format: NSBitmapImageRep.FileType) -> Data? {

@@ -16,7 +16,6 @@ let package = Package(
     dependencies: [
         // Dependencies declare other packages that this package depends on.
         .package(url: "https://github.com/apple/swift-argument-parser", from: "0.2.0"),
-        .package(url: "https://github.com/apple/swift-tools-support-core.git", .upToNextMajor(from: "0.1.10")),
     ],
     targets: [
         // Targets are the basic building blocks of a package. A target can define a module or a test suite.
@@ -37,7 +36,6 @@ let package = Package(
         .target(
             name: "FrameitLib",
             dependencies: [
-                .product(name: "SwiftToolsSupport", package: "swift-tools-support-core"),
                 .product(name: "ArgumentParser", package: "swift-argument-parser"),
             ]
         ),
