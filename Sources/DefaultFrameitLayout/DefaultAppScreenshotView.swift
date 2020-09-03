@@ -23,6 +23,13 @@ public struct DefaultAppScreenshotView: AppScreenshotView {
             // Background Color
             self.layout.backgroundColor
 
+            // Background Image
+            if let backgoundImage = self.content.backgroundImage {
+                Image(nsImage: backgoundImage)
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+            }
+
             // Main
             VStack {
                 VStack(alignment: .leading, spacing: pixel(24)) {
@@ -50,5 +57,24 @@ public struct DefaultAppScreenshotView: AppScreenshotView {
                 .padding(self.layout.insetForImage)
             }
         }
+    }
+}
+
+struct DefaultAppScreenshotView_Previews: PreviewProvider {
+    static var previews: some View {
+        DefaultAppScreenshotView(
+            layout: Layout.iPhone65,
+            content: Content(
+                keyword: "Frame it",
+                title: "Make your beautiful screenshots",
+                framedScreenshots: [NSImage()]
+            )
+        )
+        .previewLayout(
+            .fixed(
+                width: Layout.iPhone65.size.width,
+                height: Layout.iPhone65.size.height
+            )
+        )
     }
 }

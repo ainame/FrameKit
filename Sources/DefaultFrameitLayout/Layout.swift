@@ -10,7 +10,9 @@ public struct Layout: LayoutConfigurationProvider {
     public let fontSizeForTitle: CGFloat
     public let textColor: Color
     public let backgroundColor: Color
+}
 
+extension Layout {
     public init(
         size: CGSize,
         insetForText: EdgeInsets,

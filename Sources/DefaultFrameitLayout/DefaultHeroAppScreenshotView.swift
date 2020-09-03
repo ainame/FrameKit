@@ -21,10 +21,12 @@ public struct DefaultHeroAppScreenshotView: AppScreenshotView {
     public var body: some View {
         GeometryReader() { geometry in
             ZStack {
+                // Background Colour
                 self.layout.backgroundColor
 
-                self.content.backgroundImage.flatMap {
-                    Image(nsImage: $0)
+                // Background Image
+                if let backgoundImage = self.content.backgroundImage {
+                    Image(nsImage: backgoundImage)
                         .resizable()
                         .aspectRatio(contentMode: .fit)
                 }
@@ -65,5 +67,26 @@ public struct DefaultHeroAppScreenshotView: AppScreenshotView {
                 .padding(self.layout.insetForText)
             }
         }
+    }
+}
+
+struct DefaultHeroAppScreenshotView_Previews: PreviewProvider {
+    static var previews: some View {
+        DefaultHeroAppScreenshotView(
+            layout: Layout.iPhone65,
+            content: Content(
+                keyword: "Make your beautiful screenshots",
+                title: "",
+                framedScreenshots: [
+                    NSImage(), NSImage(), NSImage()
+                ]
+            )
+        )
+        .previewLayout(
+            .fixed(
+                width: Layout.iPhone65.size.width,
+                height: Layout.iPhone65.size.height
+            )
+        )
     }
 }
