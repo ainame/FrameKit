@@ -24,8 +24,8 @@ public struct DefaultAppScreenshotView: AppScreenshotView {
             self.layout.backgroundColor
 
             // Background Image
-            if let backgoundImage = self.content.backgroundImage {
-                Image(nsImage: backgoundImage)
+            self.content.backgroundImage.map { backgroundImage in
+                Image(nsImage: backgroundImage)
                     .resizable()
                     .aspectRatio(contentMode: .fit)
             }
