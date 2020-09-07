@@ -45,7 +45,7 @@ public struct DefaultAppScreenshotView: AppScreenshotView {
                         .multilineTextAlignment(.leading)
                         .lineLimit(nil)
                 }
-                .padding(self.layout.insetForText)
+                .padding(self.layout.textInsets)
 
                 Spacer()
 
@@ -54,7 +54,7 @@ public struct DefaultAppScreenshotView: AppScreenshotView {
                         .resizable()
                         .aspectRatio(contentMode: .fit)
                 }
-                .padding(self.layout.insetForImage)
+                .padding(self.layout.imageInsets)
             }
         }
     }

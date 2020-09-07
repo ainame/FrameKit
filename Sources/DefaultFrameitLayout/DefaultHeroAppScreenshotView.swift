@@ -52,7 +52,7 @@ public struct DefaultHeroAppScreenshotView: AppScreenshotView {
                             .aspectRatio(contentMode: .fit)
                             .frame(width: geometry.size.width / 2.2, alignment: .center)
                     }
-                    .padding(self.layout.insetForImage)
+                    .padding(self.layout.imageInsets)
                 }
 
                 VStack(alignment: .leading) {
@@ -64,7 +64,7 @@ public struct DefaultHeroAppScreenshotView: AppScreenshotView {
                         .multilineTextAlignment(.leading)
                         .lineLimit(nil)
                 }
-                .padding(self.layout.insetForText)
+                .padding(self.layout.textInsets)
             }
         }
     }

@@ -7,6 +7,6 @@ public protocol AppScreenshotView: View {
 }
 
 extension AppScreenshotView {
-    public var fontForKeyword: Font { Font.system(size: layout.fontSizeForKeyword, weight: .bold, design: .default) }
-    public var fontForTitle: Font { Font.system(size: layout.fontSizeForTitle, weight: .regular, design: .default) }
+    public var fontForKeyword: Font { Font.system(size: layout.keywordFontSize, weight: .bold, design: .default) }
+    public var fontForTitle: Font { Font.system(size: layout.titleFontSize, weight: .regular, design: .default) }
 }

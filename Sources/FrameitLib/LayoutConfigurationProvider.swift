@@ -3,11 +3,11 @@ import SwiftUI
 
 public protocol LayoutConfigurationProvider {
     var size: CGSize { get }
-    var insetForText: EdgeInsets { get }
-    var insetForImage: EdgeInsets { get }
+    var textInsets: EdgeInsets { get }
+    var imageInsets: EdgeInsets { get }
     var screenshotScale: CGFloat { get }
-    var fontSizeForKeyword: CGFloat { get }
-    var fontSizeForTitle: CGFloat { get }
+    var keywordFontSize: CGFloat { get }
+    var titleFontSize: CGFloat { get }
     var textColor: Color { get }
     var backgroundColor: Color { get }
 }
