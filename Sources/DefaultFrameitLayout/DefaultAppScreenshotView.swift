@@ -45,6 +45,7 @@ public struct DefaultAppScreenshotView: AppScreenshotView {
                         .multilineTextAlignment(.leading)
                         .lineLimit(nil)
                 }
+                .frame(maxWidth: .infinity, alignment: .topLeading)
                 .padding(self.layout.textInsets)
 
                 Spacer()
@@ -54,27 +55,9 @@ public struct DefaultAppScreenshotView: AppScreenshotView {
                         .resizable()
                         .aspectRatio(contentMode: .fit)
                 }
+                .frame(maxWidth: .infinity)
                 .padding(self.layout.imageInsets)
             }
         }
-    }
-}
-
-struct DefaultAppScreenshotView_Previews: PreviewProvider {
-    static var previews: some View {
-        DefaultAppScreenshotView(
-            layout: Layout.iPhone65,
-            content: Content(
-                keyword: "Frame it",
-                title: "Make your beautiful screenshots",
-                framedScreenshots: [NSImage()]
-            )
-        )
-        .previewLayout(
-            .fixed(
-                width: Layout.iPhone65.size.width,
-                height: Layout.iPhone65.size.height
-            )
-        )
     }
 }

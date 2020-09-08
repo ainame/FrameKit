@@ -37,10 +37,10 @@ extension Layout {
 
     public static let iPhone65 = Self(
         size: CGSize(width: pixel(1242), height: pixel(2688)),
-        textInsets: EdgeInsets(top: pixel(36), leading: pixel(96), bottom: pixel(48), trailing: pixel(96)),
-        imageInsets: EdgeInsets(top: 0, leading: pixel(84), bottom: pixel(48), trailing: pixel(84)),
-        keywordFontSize: 86,
-        titleFontSize: 54,
+        textInsets: EdgeInsets(top: pixel(72), leading: pixel(120), bottom: pixel(96), trailing: pixel(120)),
+        imageInsets: EdgeInsets(top: 0, leading: 0, bottom: pixel(96), trailing: 0),
+        keywordFontSize: pixel(148),
+        titleFontSize: pixel(72),
         textColor: .white,
         backgroundColor: defaultBackgroundColor,
         screenshotScale: 3.0
@@ -50,8 +50,8 @@ extension Layout {
         size: CGSize(width: pixel(1242), height: pixel(2208)),
         textInsets: EdgeInsets(top: pixel(36), leading: pixel(96), bottom: pixel(48), trailing: pixel(96)),
         imageInsets: EdgeInsets(top: 0, leading: pixel(84), bottom: -pixel(400), trailing: pixel(84)),
-        keywordFontSize: 86,
-        titleFontSize: 54,
+        keywordFontSize: pixel(148),
+        titleFontSize: pixel(72),
         textColor: .white,
         backgroundColor: defaultBackgroundColor,
         screenshotScale: 3.0
@@ -61,8 +61,8 @@ extension Layout {
         size: CGSize(width: pixel(2048), height: pixel(2732)),
         textInsets: EdgeInsets(top: pixel(48), leading: pixel(96), bottom: pixel(48), trailing: pixel(96)),
         imageInsets: EdgeInsets(top: 0, leading: pixel(150), bottom: -pixel(200), trailing: pixel(150)),
-        keywordFontSize: 86,
-        titleFontSize: 54,
+        keywordFontSize: pixel(148),
+        titleFontSize: pixel(72),
         textColor: .white,
         backgroundColor: defaultBackgroundColor,
         screenshotScale: 2.0
@@ -72,13 +72,15 @@ extension Layout {
         size: CGSize(width: pixel(2048), height: pixel(2732)),
         textInsets: EdgeInsets(top: pixel(48), leading: pixel(96), bottom: pixel(48), trailing: pixel(96)),
         imageInsets: EdgeInsets(top: 0, leading: pixel(96), bottom: -pixel(200), trailing: pixel(96)),
-        keywordFontSize: 86,
-        titleFontSize: 54,
+        keywordFontSize: pixel(148),
+        titleFontSize: pixel(72),
         textColor: .white,
         backgroundColor: defaultBackgroundColor,
         screenshotScale: 2.0
     )
+}
 
+extension Layout {
     public static let iPhone65Hero = Self(
         size: CGSize(width: pixel(1242), height: pixel(2688)),
         textInsets: EdgeInsets(top: 0, leading: pixel(96), bottom: pixel(240), trailing: pixel(96)),
