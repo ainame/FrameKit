@@ -10,9 +10,7 @@ public struct Layout: LayoutConfigurationProvider {
     public let titleFontSize: CGFloat
     public let textColor: Color
     public let backgroundColor: Color
-}
 
-extension Layout {
     public init(
         size: CGSize,
         textInsets: EdgeInsets,
@@ -32,7 +30,9 @@ extension Layout {
         self.backgroundColor = backgroundColor
         self.screenshotScale = screenshotScale
     }
+}
 
+extension Layout {
     public static let defaultBackgroundColor = Color(red: 255 / 255, green: 153 / 255, blue: 51 / 255)
 
     public static let iPhone65 = Self(
@@ -81,12 +81,45 @@ extension Layout {
 
     public static let iPhone65Hero = Self(
         size: CGSize(width: pixel(1242), height: pixel(2688)),
-        textInsets: EdgeInsets(top: 0, leading: pixel(96), bottom: pixel(96), trailing: pixel(96)),
-        imageInsets: EdgeInsets(top: 0, leading: pixel(84), bottom: pixel(128), trailing: pixel(84)),
-        keywordFontSize: pixel(72),
+        textInsets: EdgeInsets(top: 0, leading: pixel(96), bottom: pixel(240), trailing: pixel(96)),
+        imageInsets: EdgeInsets(top: 0, leading: pixel(84), bottom: pixel(96), trailing: pixel(84)),
+        keywordFontSize: 54,
         titleFontSize: 86,
         textColor: .white,
         backgroundColor: defaultBackgroundColor,
         screenshotScale: 3.0
+    )
+
+    public static let iPhone55Hero = Self(
+        size: CGSize(width: pixel(1242), height: pixel(2688)),
+        textInsets: EdgeInsets(top: 0, leading: pixel(96), bottom: pixel(240), trailing: pixel(96)),
+        imageInsets: EdgeInsets(top: 0, leading: pixel(84), bottom: pixel(96), trailing: pixel(84)),
+        keywordFontSize: 54,
+        titleFontSize: 86,
+        textColor: .white,
+        backgroundColor: defaultBackgroundColor,
+        screenshotScale: 3.0
+    )
+
+    public static let iPadProHero = Self(
+        size: CGSize(width: pixel(2048), height: pixel(2732)),
+        textInsets: EdgeInsets(top: pixel(48), leading: pixel(96), bottom: pixel(240), trailing: pixel(96)),
+        imageInsets: EdgeInsets(top: 0, leading: pixel(150), bottom: pixel(148), trailing: pixel(150)),
+        keywordFontSize: 54,
+        titleFontSize: 54,
+        textColor: .white,
+        backgroundColor: defaultBackgroundColor,
+        screenshotScale: 2.0
+    )
+
+    public static let iPadPro3rdGenHero = Self(
+        size: CGSize(width: pixel(2048), height: pixel(2732)),
+        textInsets: EdgeInsets(top: pixel(48), leading: pixel(96), bottom: pixel(240), trailing: pixel(96)),
+        imageInsets: EdgeInsets(top: 0, leading: pixel(96), bottom: pixel(148), trailing: pixel(96)),
+        keywordFontSize: 54,
+        titleFontSize: 54,
+        textColor: .white,
+        backgroundColor: defaultBackgroundColor,
+        screenshotScale: 2.0
     )
 }

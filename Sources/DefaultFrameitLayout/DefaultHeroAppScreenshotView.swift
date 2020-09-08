@@ -52,14 +52,14 @@ public struct DefaultHeroAppScreenshotView: AppScreenshotView {
                             .aspectRatio(contentMode: .fit)
                             .frame(width: geometry.size.width / 2.2, alignment: .center)
                     }
-                    .padding(self.layout.imageInsets)
                 }
+                .padding(self.layout.imageInsets)
 
                 VStack(alignment: .leading) {
                     Spacer()
-
+                    
                     Text(self.content.keyword)
-                        .font(self.fontForKeyword)
+                        .font(self.keywordFont)
                         .foregroundColor(self.layout.textColor)
                         .multilineTextAlignment(.leading)
                         .lineLimit(nil)
@@ -67,26 +67,5 @@ public struct DefaultHeroAppScreenshotView: AppScreenshotView {
                 .padding(self.layout.textInsets)
             }
         }
-    }
-}
-
-struct DefaultHeroAppScreenshotView_Previews: PreviewProvider {
-    static var previews: some View {
-        DefaultHeroAppScreenshotView(
-            layout: Layout.iPhone65,
-            content: Content(
-                keyword: "Make your beautiful screenshots",
-                title: "",
-                framedScreenshots: [
-                    NSImage(), NSImage(), NSImage()
-                ]
-            )
-        )
-        .previewLayout(
-            .fixed(
-                width: Layout.iPhone65.size.width,
-                height: Layout.iPhone65.size.height
-            )
-        )
     }
 }

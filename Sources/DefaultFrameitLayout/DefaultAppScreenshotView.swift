@@ -34,13 +34,13 @@ public struct DefaultAppScreenshotView: AppScreenshotView {
             VStack {
                 VStack(alignment: .leading, spacing: pixel(24)) {
                     Text(self.content.keyword)
-                        .font(self.fontForKeyword)
+                        .font(self.keywordFont)
                         .foregroundColor(self.layout.textColor)
                         .multilineTextAlignment(.leading)
                         .lineLimit(nil)
 
                     Text(self.content.title)
-                        .font(self.fontForTitle)
+                        .font(self.titleFont)
                         .foregroundColor(self.layout.textColor)
                         .multilineTextAlignment(.leading)
                         .lineLimit(nil)
