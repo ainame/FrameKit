@@ -30,8 +30,17 @@ public struct DefaultAppScreenshotView: AppScreenshotView {
                     .aspectRatio(contentMode: .fit)
             }
 
-            // Main
-            VStack {
+            // Image
+            HStack(alignment: .bottom) {
+                Image(nsImage: self.content.framedScreenshots[0])
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+            }
+            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)
+            .padding(self.layout.imageInsets)
+
+            // Text
+            HStack(alignment: .top) {
                 VStack(alignment: .leading, spacing: pixel(24)) {
                     Text(self.content.keyword)
                         .font(self.keywordFont)
@@ -45,18 +54,8 @@ public struct DefaultAppScreenshotView: AppScreenshotView {
                         .multilineTextAlignment(.leading)
                         .lineLimit(nil)
                 }
-                .frame(maxWidth: .infinity, alignment: .topLeading)
+                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
                 .padding(self.layout.textInsets)
-
-                Spacer()
-
-                HStack(alignment: .center) {
-                    Image(nsImage: self.content.framedScreenshots[0])
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                }
-                .frame(maxWidth: .infinity)
-                .padding(self.layout.imageInsets)
             }
         }
     }
