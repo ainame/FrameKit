@@ -4,7 +4,7 @@ import enum SwiftUI.LayoutDirection
 
 public struct Command<HeroView: AppScreenshotView,
                       View: AppScreenshotView,
-                      LayoutOption: LayoutConfigurationProviderOption>: ParsableCommand {
+                      LayoutOption: LayoutProviderOption>: ParsableCommand where View.Layout == LayoutOption.Layout {
 
     public static var configuration: CommandConfiguration {
         CommandConfiguration(commandName: "frameit")

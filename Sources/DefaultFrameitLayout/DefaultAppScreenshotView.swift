@@ -3,15 +3,15 @@ import FrameitLib
 import SwiftUI
 
 public struct DefaultAppScreenshotView: AppScreenshotView {
-    public let layout: LayoutConfigurationProvider
+    public let layout: DefaultLayout
     public let content: ContentProvider
 
-    public static func makeView(layout: LayoutConfigurationProvider, content: ContentProvider) -> DefaultAppScreenshotView {
+    public static func makeView(layout: DefaultLayout, content: ContentProvider) -> Self {
         Self(layout: layout, content: content)
     }
 
     public init(
-        layout: LayoutConfigurationProvider,
+        layout: DefaultLayout,
         content: ContentProvider
     ) {
         self.layout = layout

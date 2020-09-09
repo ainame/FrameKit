@@ -1,4 +1,4 @@
 import FrameitLib
 import DefaultFrameitLayout
 
-Command<DefaultHeroAppScreenshotView, DefaultAppScreenshotView, LayoutOption>.main()
+Command<DefaultHeroAppScreenshotView, DefaultAppScreenshotView, DefaultLayoutOption>.main()

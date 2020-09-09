@@ -5,7 +5,7 @@ import SwiftUI
 public class Frameit {
     public static func run<View: AppScreenshotView>(
         viewType: View.Type,
-        layout: LayoutConfigurationProvider,
+        layout: View.Layout,
         with configuration: Configuration
     ) {
         // Device frame's image needs to be generted separaratedly to make framing logic easy

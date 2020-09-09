@@ -1,7 +1,7 @@
 import SwiftUI
 import FrameitLib
 
-public struct Layout: LayoutConfigurationProvider {
+public struct DefaultLayout: LayoutProvider {
     public let size: CGSize
     public let textInsets: EdgeInsets
     public let imageInsets: EdgeInsets
@@ -35,7 +35,7 @@ public struct Layout: LayoutConfigurationProvider {
     }
 }
 
-extension Layout {
+extension DefaultLayout {
     public static let defaultBackgroundColor = Color(red: 255 / 255, green: 153 / 255, blue: 51 / 255)
 
     public static let iPhone65 = Self(
@@ -87,7 +87,7 @@ extension Layout {
     )
 }
 
-extension Layout {
+extension DefaultLayout {
     public static let iPhone65Hero = Self(
         size: CGSize(width: pixel(1242), height: pixel(2688)),
         textInsets: EdgeInsets(top: 0, leading: pixel(96), bottom: pixel(240), trailing: pixel(96)),

@@ -3,15 +3,15 @@ import FrameitLib
 import SwiftUI
 
 public struct DefaultHeroAppScreenshotView: AppScreenshotView {
-    public let layout: LayoutConfigurationProvider
+    public let layout: DefaultLayout
     public let content: ContentProvider
 
-    public static func makeView(layout: LayoutConfigurationProvider, content: ContentProvider) -> Self {
+    public static func makeView(layout: DefaultLayout, content: ContentProvider) -> Self {
         Self(layout: layout, content: content)
     }
 
     public init(
-        layout: LayoutConfigurationProvider,
+        layout: DefaultLayout,
         content: ContentProvider
     ) {
         self.layout = layout
@@ -57,7 +57,7 @@ public struct DefaultHeroAppScreenshotView: AppScreenshotView {
 
                 VStack(alignment: .leading) {
                     Spacer()
-                    
+
                     Text(self.content.keyword)
                         .font(self.keywordFont)
                         .foregroundColor(self.layout.textColor)
