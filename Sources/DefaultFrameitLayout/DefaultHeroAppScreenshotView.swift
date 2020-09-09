@@ -19,53 +19,53 @@ public struct DefaultHeroAppScreenshotView: AppScreenshotView {
     }
 
     public var body: some View {
-        GeometryReader() { geometry in
-            ZStack {
-                // Background Colour
-                self.layout.backgroundColor
+        ZStack {
+            // Background Colour
+            self.layout.backgroundColor
 
-                // Background Image
-                self.content.backgroundImage.map { backgroundImage in
-                    Image(nsImage: backgroundImage)
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                }
+            // Background Image
+            self.content.backgroundImage.map { backgroundImage in
+                Image(nsImage: backgroundImage)
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+            }
 
-                VStack(alignment: .leading) {
-                    ZStack {
-                        HStack(alignment: .center, spacing: 10) {
-                            Image(nsImage: self.content.framedScreenshots[1])
-                                .resizable()
-                                .aspectRatio(contentMode: .fit)
-                                .frame(width: geometry.size.width / 2.6)
-
-                            Spacer()
-
-                            Image(nsImage: self.content.framedScreenshots[2])
-                                .resizable()
-                                .aspectRatio(contentMode: .fit)
-                                .frame(width: geometry.size.width / 2.6)
-                        }
-
-                        Image(nsImage: self.content.framedScreenshots[0])
+            // Images
+            GeometryReader() { geometry in
+                ZStack {
+                    HStack(alignment: .center, spacing: 10) {
+                        Image(nsImage: self.content.framedScreenshots[1])
                             .resizable()
                             .aspectRatio(contentMode: .fit)
-                            .frame(width: geometry.size.width / 2.2, alignment: .center)
+                            .frame(width: geometry.size.width / 2.6)
+
+                        Spacer()
+
+                        Image(nsImage: self.content.framedScreenshots[2])
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .frame(width: geometry.size.width / 2.6)
                     }
+
+                    Image(nsImage: self.content.framedScreenshots[0])
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width: geometry.size.width / 2.2, alignment: .center)
                 }
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
                 .padding(self.layout.imageInsets)
-
-                VStack(alignment: .leading) {
-                    Spacer()
-
-                    Text(self.content.keyword)
-                        .font(self.keywordFont)
-                        .foregroundColor(self.layout.textColor)
-                        .multilineTextAlignment(.leading)
-                        .lineLimit(nil)
-                }
-                .padding(self.layout.textInsets)
             }
+
+            // Text
+            HStack {
+                Text(self.content.keyword)
+                    .font(self.keywordFont)
+                    .foregroundColor(self.layout.textColor)
+                    .multilineTextAlignment(.leading)
+                    .lineLimit(nil)
+            }
+            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)
+            .padding(self.layout.textInsets)
         }
     }
 }
