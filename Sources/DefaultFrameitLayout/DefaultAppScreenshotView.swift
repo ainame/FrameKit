@@ -41,7 +41,7 @@ public struct DefaultAppScreenshotView: AppScreenshotView {
 
             // Text
             HStack(alignment: .top) {
-                VStack(alignment: .leading, spacing: pixel(24)) {
+                VStack(alignment: .leading, spacing: self.layout.textGap) {
                     Text(self.content.keyword)
                         .font(self.keywordFont)
                         .foregroundColor(self.layout.textColor)

@@ -8,6 +8,7 @@ public protocol LayoutConfigurationProvider {
     var screenshotScale: CGFloat { get }
     var keywordFontSize: CGFloat { get }
     var titleFontSize: CGFloat { get }
+    var textGap: CGFloat { get }
     var textColor: Color { get }
     var backgroundColor: Color { get }
 }
