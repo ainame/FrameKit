@@ -1,5 +1,5 @@
 import SwiftUI
-import FrameitLib
+import FrameKit
 
 public struct DefaultLayout: LayoutProvider {
     public let size: CGSize

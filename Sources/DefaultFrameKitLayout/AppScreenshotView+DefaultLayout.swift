@@ -1,6 +1,6 @@
 import Foundation
 import SwiftUI
-import FrameitLib
+import FrameKit
 
 extension AppScreenshotView where Self.Layout == DefaultLayout {
     var keywordFont: Font { Font.system(size: layout.keywordFontSize, weight: .bold, design: .default) }

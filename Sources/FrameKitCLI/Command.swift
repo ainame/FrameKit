@@ -1,6 +1,6 @@
 import ArgumentParser
 import Foundation
-import FrameitLib
+import FrameKit
 import enum SwiftUI.LayoutDirection
 
 struct Command<HeroView: AppScreenshotView,
@@ -63,7 +63,7 @@ An absolute or relative path to the image to be shown as the device frame. Downl
             layoutDirection: isRTL ? .rightToLeft : .leftToRight
         )
 
-        Frameit.run(
+        FrameKit.run(
             viewType: isHero ? HeroView.self as! View.Type : View.self,
             layout: layout.value,
             with: configuraion

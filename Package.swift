@@ -4,14 +4,14 @@
 import PackageDescription
 
 let package = Package(
-    name: "frameit",
+    name: "FrameKit",
     platforms: [
         .macOS(.v10_15)
     ],
     products: [
-        .executable(name: "frameit", targets: ["FrameitCLI"]),
-        .library(name: "DefaultFrameitLayout", targets: ["DefaultFrameitLayout"]),
-        .library(name: "FrameitLib", targets: ["FrameitLib"]),
+        .executable(name: "framekit", targets: ["FrameKitCLI"]),
+        .library(name: "DefaultFrameKitLayout", targets: ["DefaultFrameKitLayout"]),
+        .library(name: "FrameKit", targets: ["FrameKit"]),
     ],
     dependencies: [
         // Dependencies declare other packages that this package depends on.
@@ -21,26 +21,26 @@ let package = Package(
         // Targets are the basic building blocks of a package. A target can define a module or a test suite.
         // Targets can depend on other targets in this package, and on products in packages which this package depends on.
         .target(
-            name: "FrameitCLI",
+            name: "FrameKitCLI",
             dependencies: [
-                .target(name: "FrameitLib"),
-                .target(name: "DefaultFrameitLayout"),
+                .target(name: "FrameKit"),
+                .target(name: "DefaultFrameKitLayout"),
                 .product(name: "ArgumentParser", package: "swift-argument-parser"),
             ]
         ),
         .target(
-            name: "DefaultFrameitLayout",
+            name: "DefaultFrameKitLayout",
             dependencies: [
-                .target(name: "FrameitLib"),
+                .target(name: "FrameKit"),
             ]
         ),
         .target(
-            name: "FrameitLib"
+            name: "FrameKit"
         ),
         .testTarget(
-            name: "FrameitCLITests",
+            name: "FrameKitCLITests",
             dependencies: [
-                .target(name: "FrameitCLI")
+                .target(name: "FrameKitCLI")
             ]
         ),
     ]

@@ -2,7 +2,7 @@ import AppKit
 import SwiftUI
 
 // Main function that supports both CLI and Swift Playground
-public class Frameit {
+public class FrameKit {
     public static func run<View: AppScreenshotView>(
         viewType: View.Type,
         layout: View.Layout,

@@ -1,5 +1,5 @@
 import AppKit
-import FrameitLib
+import FrameKit
 import SwiftUI
 
 public struct DefaultHeroAppScreenshotView: AppScreenshotView {

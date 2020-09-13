@@ -1,2 +1,2 @@
-# frameit-swift
-A tool that aims to replace fastlane/frameit in Swifty approach.
+# FrameKit
+A Swift libary that helps you build stunning App Store screenshots with SwiftUI.

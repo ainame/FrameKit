@@ -1,7 +1,7 @@
 import ArgumentParser
-import DefaultFrameitLayout
+import DefaultFrameKitLayout
 import Foundation
-import FrameitLib
+import FrameKit
 
 enum DefaultLayoutOption: String, RawRepresentable, ExpressibleByArgument, LayoutProviderOption {
     case iPhone65 = "iphone_65"
