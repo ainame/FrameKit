@@ -25,6 +25,7 @@ let package = Package(
             dependencies: [
                 .target(name: "FrameitLib"),
                 .target(name: "DefaultFrameitLayout"),
+                .product(name: "ArgumentParser", package: "swift-argument-parser"),
             ]
         ),
         .target(
@@ -34,10 +35,7 @@ let package = Package(
             ]
         ),
         .target(
-            name: "FrameitLib",
-            dependencies: [
-                .product(name: "ArgumentParser", package: "swift-argument-parser"),
-            ]
+            name: "FrameitLib"
         ),
         .testTarget(
             name: "FrameitCLITests",

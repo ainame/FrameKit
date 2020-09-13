@@ -1,12 +1,13 @@
 import ArgumentParser
 import Foundation
+import FrameitLib
 import enum SwiftUI.LayoutDirection
 
-public struct Command<HeroView: AppScreenshotView,
+struct Command<HeroView: AppScreenshotView,
                       View: AppScreenshotView,
                       LayoutOption: LayoutProviderOption>: ParsableCommand where View.Layout == LayoutOption.Layout {
 
-    public static var configuration: CommandConfiguration {
+    static var configuration: CommandConfiguration {
         CommandConfiguration(commandName: "frameit")
     }
 
@@ -49,9 +50,9 @@ An absolute or relative path to the image to be shown as the device frame. Downl
             completion: .file())
     var screenshots: [String] = []
 
-    public init() {}
+    init() {}
 
-    public mutating func run() throws {
+    mutating func run() throws {
         let configuraion = Configuration(
             outputPath: output,
             keyword: keyword,
