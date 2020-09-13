@@ -13,7 +13,7 @@ public class Frameit {
             DeviceFrame.makeImage(
                 screenshot: absolutePath(screenshot),
                 deviceFrame: absolutePath(configuration.deviceFrame),
-                screenshotScale: layout.screenshotScale
+                layout: layout
             )
         })
 

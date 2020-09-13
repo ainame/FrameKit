@@ -5,4 +5,5 @@ import SwiftUI
 public protocol LayoutProvider {
     var size: CGSize { get }
     var screenshotScale: CGFloat { get }
+    var deviceFrameOffset: CGSize { get }
 }
