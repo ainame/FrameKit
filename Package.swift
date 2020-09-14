@@ -9,7 +9,8 @@ let package = Package(
         .macOS(.v10_15)
     ],
     products: [
-        .executable(name: "framekit", targets: ["FrameKitCLI"]),
+        .executable(name: "framekit-gen", targets: ["FrameKitGenCLI"]),
+        .executable(name: "framekit-template", targets: ["FrameKitTemplateCLI"]),
         .library(name: "DefaultFrameKitLayout", targets: ["DefaultFrameKitLayout"]),
         .library(name: "FrameKit", targets: ["FrameKit"]),
     ],
@@ -21,10 +22,17 @@ let package = Package(
         // Targets are the basic building blocks of a package. A target can define a module or a test suite.
         // Targets can depend on other targets in this package, and on products in packages which this package depends on.
         .target(
-            name: "FrameKitCLI",
+            name: "FrameKitGenCLI",
             dependencies: [
                 .target(name: "FrameKit"),
                 .target(name: "DefaultFrameKitLayout"),
+                .product(name: "ArgumentParser", package: "swift-argument-parser"),
+            ]
+        ),
+        .target(
+            name: "FrameKitTemplateCLI",
+            dependencies: [
+                .target(name: "FrameKit"),
                 .product(name: "ArgumentParser", package: "swift-argument-parser"),
             ]
         ),
@@ -38,9 +46,9 @@ let package = Package(
             name: "FrameKit"
         ),
         .testTarget(
-            name: "FrameKitCLITests",
+            name: "FrameKitGenCLITests",
             dependencies: [
-                .target(name: "FrameKitCLI")
+                .target(name: "FrameKitGenCLI")
             ]
         ),
     ]

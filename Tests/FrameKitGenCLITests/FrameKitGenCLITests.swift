@@ -1,7 +1,7 @@
 import XCTest
 import class Foundation.Bundle
 
-final class FrameKitCLITests: XCTestCase {
+final class FrameKitGenCLITests: XCTestCase {
     func testExample() throws {
         // This is an example of a functional test case.
         // Use XCTAssert and related functions to verify your tests produce the correct
@@ -12,7 +12,7 @@ final class FrameKitCLITests: XCTestCase {
             return
         }
 
-        let fooBinary = productsDirectory.appendingPathComponent("framekit")
+        let fooBinary = productsDirectory.appendingPathComponent("framekit-gen")
 
         let process = Process()
         process.executableURL = fooBinary
