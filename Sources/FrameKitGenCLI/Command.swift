@@ -16,6 +16,9 @@ struct Command<HeroView: AppScreenshotView,
             completion: .list(LayoutOption.allCases.map(\.rawValue)))
     var layout: LayoutOption
 
+    @Option(name: .shortAndLong, help: "A target locale's identifier to be used to adjust layout within view")
+    var locale: String
+
     @Option(name: .shortAndLong, help: "A string to be shown with bold font")
     var keyword: String
 
@@ -54,6 +57,7 @@ An absolute or relative path to the image to be shown as the device frame. Downl
 
     mutating func run() throws {
         let configuraion = Configuration(
+            locale: Locale(identifier: locale),
             outputPath: output,
             keyword: keyword,
             title: title,

@@ -1,6 +1,8 @@
+import Foundation
 import SwiftUI
 
 public struct Configuration {
+    let locale: Locale
     let outputPath: String
     let keyword: String
     let title: String
@@ -10,6 +12,7 @@ public struct Configuration {
     let layoutDirection: LayoutDirection
 
     public init(
+        locale: Locale,
         outputPath: String,
         keyword: String,
         title: String,
@@ -18,6 +21,7 @@ public struct Configuration {
         deviceFrame: String,
         layoutDirection: LayoutDirection
     ) {
+        self.locale = locale
         self.outputPath = outputPath
         self.keyword = keyword
         self.title = title

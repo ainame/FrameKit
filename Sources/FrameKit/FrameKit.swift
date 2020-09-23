@@ -18,6 +18,7 @@ public class FrameKit {
         })
 
         let content = Content(
+            locale: configuration.locale,
             keyword: configuration.keyword,
             title: configuration.title,
             backgroundImage: configuration.backgroundImage.flatMap({ NSImage(contentsOfFile: absolutePath($0)) }),
