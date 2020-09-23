@@ -109,7 +109,7 @@ extension DefaultLayout {
     )
 
     public static let iPhone55Hero = Self(
-        size: CGSize(width: pixel(1242), height: pixel(2688)),
+        size: CGSize(width: pixel(1242), height: pixel(2208)),
         screenshotScale: 3.0,
         deviceFrameOffset: .zero,
         textInsets: EdgeInsets(top: 0, leading: pixel(96), bottom: pixel(240), trailing: pixel(96)),
