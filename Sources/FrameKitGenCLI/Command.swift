@@ -11,7 +11,7 @@ struct Command<HeroView: AppScreenshotView,
         CommandConfiguration(commandName: "frameit")
     }
 
-    @Option(name: .shortAndLong,
+    @Option(name: .long,
             help: "\(LayoutOption.allCases.map({ "\"\($0.rawValue)\"" }).joined(separator: ", "))",
             completion: .list(LayoutOption.allCases.map(\.rawValue)))
     var layout: LayoutOption
