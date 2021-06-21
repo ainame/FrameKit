@@ -22,7 +22,6 @@ public struct DeviceFrame {
         let deviceFrameView = DeviceFrameView(
             deviceFrame: deviceFrame,
             screenshot: screenshot,
-            screenshotScale: layout.screenshotScale,
             offset: layout.deviceFrameOffset
         )
         let view = NSHostingView(rootView: deviceFrameView)

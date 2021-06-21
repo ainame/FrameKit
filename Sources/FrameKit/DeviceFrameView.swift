@@ -3,15 +3,11 @@ import SwiftUI
 public struct DeviceFrameView: View {
     public let deviceFrame: NSImage
     public let screenshot: NSImage
-    // Assume that given screenshot was sized within iOS simulator in point unit so in order to work with AppKit's screen scale,
-    // that size has to be converted to pixel by multiple original scale.
-    public let screenshotScale: CGFloat
     public let offset: CGSize
 
-    public init(deviceFrame: NSImage, screenshot: NSImage, screenshotScale: CGFloat, offset: CGSize = .zero) {
+    public init(deviceFrame: NSImage, screenshot: NSImage, offset: CGSize = .zero) {
         self.deviceFrame = deviceFrame
         self.screenshot = screenshot
-        self.screenshotScale = screenshotScale
         self.offset = offset
     }
 
@@ -24,8 +20,7 @@ public struct DeviceFrameView: View {
         ZStack {
             Image(nsImage: self.screenshot)
                 .resizable()
-                .frame(width: pixel(self.screenshot.size.width * self.screenshotScale),
-                       height: pixel(self.screenshot.size.height * self.screenshotScale))
+                .frame(width: pixel(self.screenshot.size.width), height: pixel(self.screenshot.size.height))
                 .offset(self.offset)
             Image(nsImage: self.deviceFrame)
                 .resizable()
