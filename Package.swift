@@ -13,6 +13,7 @@ let package = Package(
         .executable(name: "framekit-template", targets: ["FrameKitTemplateCLI"]),
         .library(name: "DefaultFrameKitLayout", targets: ["DefaultFrameKitLayout"]),
         .library(name: "FrameKit", targets: ["FrameKit"]),
+        .library(name: "FrameKitCLILib", targets: ["FrameKitCLILib"]),
     ],
     dependencies: [
         // Dependencies declare other packages that this package depends on.
@@ -23,6 +24,14 @@ let package = Package(
         // Targets can depend on other targets in this package, and on products in packages which this package depends on.
         .target(
             name: "FrameKitCLI",
+            dependencies: [
+                .target(name: "FrameKit"),
+                .target(name: "FrameKitCLILib"),
+                .target(name: "DefaultFrameKitLayout"),
+            ]
+        ),
+        .target(
+            name: "FrameKitCLILib",
             dependencies: [
                 .target(name: "FrameKit"),
                 .target(name: "DefaultFrameKitLayout"),

@@ -2,7 +2,7 @@ import SwiftUI
 import FrameKit
 
 extension DefaultLayout {
-    func layout(with newSize: CGSize) -> LayoutProvider {
+    func layout(with newSize: CGSize) -> DefaultLayout {
         DefaultLayout(
             size: newSize,
             deviceFrameOffset: deviceFrameOffset,

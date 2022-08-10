@@ -3,7 +3,7 @@ import DefaultFrameKitLayout
 import Foundation
 import FrameKit
 
-enum DefaultLayoutOption: String, RawRepresentable, ExpressibleByArgument, LayoutProviderOption {
+public enum DefaultLayoutOption: String, RawRepresentable, ExpressibleByArgument, LayoutProviderOption {
     case iPhone65 = "iphone_65"
     case iPhone55 = "iphone_55"
     case iPadPro = "ipad_pro"
