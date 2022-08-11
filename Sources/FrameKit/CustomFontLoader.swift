@@ -2,7 +2,7 @@ import Foundation
 import CoreText
 
 public class CustomFontLoader {
-    public var shared = CustomFontLoader()
+    public static var shared = CustomFontLoader()
 
     private var registeredUrls: Set<URL> = []
 
