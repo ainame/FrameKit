@@ -7,7 +7,7 @@ public class CustomFontLoader {
     private var registeredUrls: Set<URL> = []
 
     public func registerFont(at url: URL) throws {
-        guard registeredUrls.contains(url) else {
+        if registeredUrls.contains(url) {
             return
         }
 
