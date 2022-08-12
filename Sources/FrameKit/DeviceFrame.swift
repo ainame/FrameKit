@@ -18,7 +18,7 @@ public struct DeviceFrame {
         return makeDeviceFrameImage(screenshot: screenshotImage, deviceFrame: deviceFrameImage, layout: layout)
     }
 
-    static func makeDeviceFrameImage(screenshot: NSImage, deviceFrame: NSImage, layout: LayoutProvider) -> NSImage? {
+    public static func makeDeviceFrameImage(screenshot: NSImage, deviceFrame: NSImage, layout: LayoutProvider) -> NSImage? {
         let deviceFrameView = DeviceFrameView(
             deviceFrame: deviceFrame,
             screenshot: screenshot,
