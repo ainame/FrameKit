@@ -1,6 +1,5 @@
 import ArgumentParser
 import SampleFrameKitLayout
-import Foundation
 import FrameKit
 
 public enum SampleLayoutOption: String, RawRepresentable, ExpressibleByArgument, LayoutProviderOption {
