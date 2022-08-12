@@ -3,7 +3,7 @@ import SwiftUI
 
 // Main function that supports both CLI and Swift Playground
 public struct DeviceFrame {
-    public static func makeImage(screenshot: String, deviceFrame: String, layout: LayoutProvider) -> NSImage? {
+    public static func makeImage(screenshot: String, deviceFrame: String, deviceFrameOffset: CGSize) -> NSImage? {
         guard let screenshotImage = NSImage(contentsOfFile: absolutePath(screenshot)) else {
             logError("screenshot was not found at \(screenshot)")
             return nil
@@ -18,7 +18,7 @@ public struct DeviceFrame {
         return makeDeviceFrameImage(
             screenshot: screenshotImage,
             deviceFrame: deviceFrameImage,
-            deviceFrameOffset: layout.deviceFrameOffset
+            deviceFrameOffset: deviceFrameOffset
         )
     }
 

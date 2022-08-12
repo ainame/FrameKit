@@ -65,7 +65,7 @@ extension Command {
             DeviceFrame.makeImage(
                 screenshot: absolutePath(screenshot),
                 deviceFrame: absolutePath(deviceFrame),
-                layout: layout
+                deviceFrameOffset: layout.deviceFrameOffset
             )
         })
 
