@@ -1,34 +1,32 @@
 import ArgumentParser
-import Foundation
+import AppKit
 import FrameKit
+import DefaultFrameKitLayout
 import enum SwiftUI.LayoutDirection
 
-open class Command<HeroView: AppScreenshotView,
-                     View: AppScreenshotView,
-                     LayoutOption: LayoutProviderOption>: ParsableCommand where View.Layout == LayoutOption.Layout {
-
+public struct Command: ParsableCommand {
     public static var configuration: CommandConfiguration {
         CommandConfiguration(commandName: "frameit")
     }
 
     @Option(name: [.customShort("L"), .customLong("layout")],
-            help: "\(LayoutOption.allCases.map({ "\"\($0.rawValue)\"" }).joined(separator: ", "))",
-            completion: .list(LayoutOption.allCases.map(\.rawValue)))
-    open var layout: LayoutOption
+            help: "\(DefaultLayoutOption.allCases.map({ "\"\($0.rawValue)\"" }).joined(separator: ", "))",
+            completion: .list(DefaultLayoutOption.allCases.map(\.rawValue)))
+    var layout: DefaultLayoutOption
 
     @Option(name: .shortAndLong, help: "A target locale's identifier to be used to adjust layout within view")
-    open var locale: String
+    var locale: String
 
     @Option(name: .shortAndLong, help: "A string to be shown with bold font")
-    open var keyword: String
+    var keyword: String
 
     @Option(name: .shortAndLong, help: "A string to be shown with regular font")
-    open var title: String
+    var title: String
 
     @Option(name: .shortAndLong,
             help: "An absolute or relative path to the image to be shown as background",
             completion: .file())
-    open var backgroundImage: String?
+    var backgroundImage: String?
 
 
     @Option(name: .shortAndLong,
@@ -36,41 +34,56 @@ open class Command<HeroView: AppScreenshotView,
 An absolute or relative path to the image to be shown as the device frame. Download them by 'fastlane frameit download_frames')
 """,
             completion: .file())
-    open var deviceFrame: String
+    var deviceFrame: String
 
     @Option(name: .shortAndLong, help: "An absolute or relative path to output", completion: .file())
-    open var output: String
+    var output: String
 
     @Flag(name: .long,
           help: "To choose hero screenshot view pass this flag.")
-    open var isHero: Bool = false
+    var isHero: Bool = false
 
     @Flag(name: .long, help: "If tehe target is RLT language, then add this")
-    open var isRTL: Bool = false
+    var isRTL: Bool = false
 
     @Option(name: .shortAndLong,
             help: "An absolute or relative path to the image to be shown as the embeded screenshot within a device frame",
             completion: .file())
-    open var screenshots: [String] = []
+    var screenshots: [String] = []
 
-    required public init() {}
+    public init() {}
+}
 
-    open func run() throws {
-        let configuraion = Configuration(
+extension Command {
+    public mutating func run() throws {
+        let layoutDirection: LayoutDirection = isRTL ? .rightToLeft : .leftToRight
+        let layout = layout.value
+
+        // Device frame's image needs to be generted separaratedly to make framing logic easy
+        let framedScreenshots = screenshots.compactMap({ screenshot in
+            DeviceFrame.makeImage(
+                screenshot: absolutePath(screenshot),
+                deviceFrame: absolutePath(deviceFrame),
+                layout: layout
+            )
+        })
+
+        let content = DefaultContent(
             locale: Locale(identifier: locale),
-            outputPath: output,
             keyword: keyword,
             title: title,
-            backgroundImage: backgroundImage,
-            screenshots: screenshots,
-            deviceFrame: deviceFrame,
-            layoutDirection: isRTL ? .rightToLeft : .leftToRight
+            backgroundImage: backgroundImage.flatMap({ NSImage(contentsOfFile: absolutePath($0)) }),
+            framedScreenshots: framedScreenshots
         )
 
-        FrameKit.run(
-            viewType: isHero ? HeroView.self as! View.Type : View.self,
-            layout: layout.value,
-            with: configuraion
-        )
+        let storeScreenshot: any StoreScreenshotView
+        if isHero {
+            storeScreenshot = DefaultHeroStoreScreenshotView.makeView(layout: layout, content: content)
+        } else {
+            storeScreenshot = DefaultStoreScreenshotView.makeView(layout: layout, content: content)
+        }
+
+        let render = StoreScreenshotRenderer(outputPath: output, layoutDirection: layoutDirection)
+        render(storeScreenshot)
     }
 }

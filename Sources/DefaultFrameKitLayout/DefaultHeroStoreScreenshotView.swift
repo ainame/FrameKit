@@ -2,17 +2,17 @@ import AppKit
 import FrameKit
 import SwiftUI
 
-public struct DefaultHeroAppScreenshotView: AppScreenshotView {
+public struct DefaultHeroStoreScreenshotView: StoreScreenshotView {
     public let layout: DefaultLayout
-    public let content: ContentProvider
+    public let content: DefaultContent
 
-    public static func makeView(layout: DefaultLayout, content: ContentProvider) -> Self {
+    public static func makeView(layout: DefaultLayout, content: DefaultContent) -> Self {
         Self(layout: layout, content: content)
     }
 
     public init(
         layout: DefaultLayout,
-        content: ContentProvider
+        content: DefaultContent
     ) {
         self.layout = layout
         self.content = content
@@ -21,10 +21,10 @@ public struct DefaultHeroAppScreenshotView: AppScreenshotView {
     public var body: some View {
         ZStack {
             // Background Colour
-            self.layout.backgroundColor
+            layout.backgroundColor
 
             // Background Image
-            self.content.backgroundImage.map { backgroundImage in
+            content.backgroundImage.map { backgroundImage in
                 Image(nsImage: backgroundImage)
                     .resizable()
                     .aspectRatio(contentMode: .fit)
@@ -34,20 +34,20 @@ public struct DefaultHeroAppScreenshotView: AppScreenshotView {
             GeometryReader() { geometry in
                 ZStack {
                     HStack(alignment: .center, spacing: 10) {
-                        Image(nsImage: self.content.framedScreenshots[1])
+                        Image(nsImage: content.framedScreenshots[1])
                             .resizable()
                             .aspectRatio(contentMode: .fit)
                             .frame(width: geometry.size.width / 2.6)
 
                         Spacer()
 
-                        Image(nsImage: self.content.framedScreenshots[2])
+                        Image(nsImage: content.framedScreenshots[2])
                             .resizable()
                             .aspectRatio(contentMode: .fit)
                             .frame(width: geometry.size.width / 2.6)
                     }
 
-                    Image(nsImage: self.content.framedScreenshots[0])
+                    Image(nsImage: content.framedScreenshots[0])
                         .resizable()
                         .aspectRatio(contentMode: .fit)
                         .frame(width: geometry.size.width / 2.2, alignment: .center)
@@ -58,8 +58,8 @@ public struct DefaultHeroAppScreenshotView: AppScreenshotView {
 
             // Text
             HStack {
-                Text(self.content.keyword)
-                    .font(self.keywordFont)
+                Text(content.keyword)
+                    .font(keywordFont)
                     .foregroundColor(self.layout.textColor)
                     .multilineTextAlignment(.leading)
                     .lineLimit(nil)

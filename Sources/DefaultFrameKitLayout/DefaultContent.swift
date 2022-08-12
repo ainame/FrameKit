@@ -1,6 +1,6 @@
 import AppKit
 
-public struct Content: ContentProvider {
+public struct DefaultContent {
     public let locale: Locale
     public let keyword: String
     public let title: String

@@ -2,17 +2,17 @@ import AppKit
 import FrameKit
 import SwiftUI
 
-public struct DefaultAppScreenshotView: AppScreenshotView {
+public struct DefaultStoreScreenshotView: StoreScreenshotView {
     public let layout: DefaultLayout
-    public let content: ContentProvider
+    public let content: DefaultContent
 
-    public static func makeView(layout: DefaultLayout, content: ContentProvider) -> Self {
+    public static func makeView(layout: DefaultLayout, content: DefaultContent) -> Self {
         Self(layout: layout, content: content)
     }
 
     public init(
         layout: DefaultLayout,
-        content: ContentProvider
+        content: DefaultContent
     ) {
         self.layout = layout
         self.content = content
@@ -21,10 +21,10 @@ public struct DefaultAppScreenshotView: AppScreenshotView {
     public var body: some View {
         ZStack {
             // Background Color
-            self.layout.backgroundColor
+            layout.backgroundColor
 
             // Background Image
-            self.content.backgroundImage.map { backgroundImage in
+            content.backgroundImage.map { backgroundImage in
                 Image(nsImage: backgroundImage)
                     .resizable()
                     .aspectRatio(contentMode: .fit)
@@ -32,25 +32,25 @@ public struct DefaultAppScreenshotView: AppScreenshotView {
 
             // Image
             HStack(alignment: .bottom) {
-                Image(nsImage: self.content.framedScreenshots[0])
+                Image(nsImage: content.framedScreenshots[0])
                     .resizable()
                     .aspectRatio(contentMode: .fit)
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)
-            .padding(self.layout.imageInsets)
+            .padding(layout.imageInsets)
 
             // Text
             HStack(alignment: .top) {
-                VStack(alignment: .leading, spacing: self.layout.textGap) {
-                    Text(self.content.keyword)
-                        .font(self.keywordFont)
-                        .foregroundColor(self.layout.textColor)
+                VStack(alignment: .leading, spacing: layout.textGap) {
+                    Text(content.keyword)
+                        .font(keywordFont)
+                        .foregroundColor(layout.textColor)
                         .multilineTextAlignment(.leading)
                         .lineLimit(nil)
 
-                    Text(self.content.title)
-                        .font(self.titleFont)
-                        .foregroundColor(self.layout.textColor)
+                    Text(content.title)
+                        .font(titleFont)
+                        .foregroundColor(layout.textColor)
                         .multilineTextAlignment(.leading)
                         .lineLimit(nil)
                 }
