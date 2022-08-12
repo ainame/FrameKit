@@ -42,10 +42,7 @@ let package = Package(
             ]
         ),
         .target(
-            name: "FrameKit",
-            dependencies: [
-                .product(name: "ArgumentParser", package: "swift-argument-parser"),
-            ]
+            name: "FrameKit"
         ),
         .testTarget(
             name: "FrameKitCLITests",
