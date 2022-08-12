@@ -15,19 +15,23 @@ public struct DeviceFrame {
         }
 
         // Device frame's image needs to be generted separaratedly to make framing logic easy
-        return makeDeviceFrameImage(screenshot: screenshotImage, deviceFrame: deviceFrameImage, layout: layout)
+        return makeDeviceFrameImage(
+            screenshot: screenshotImage,
+            deviceFrame: deviceFrameImage,
+            deviceFrameOffset: layout.deviceFrameOffset
+        )
     }
 
-    public static func makeDeviceFrameImage(screenshot: NSImage, deviceFrame: NSImage, layout: LayoutProvider) -> NSImage? {
-        let pngData = makeDeviceFrameData(screenshot: screenshot, deviceFrame: deviceFrame, layout: layout)
+    public static func makeDeviceFrameImage(screenshot: NSImage, deviceFrame: NSImage, deviceFrameOffset: CGSize) -> NSImage? {
+        let pngData = makeDeviceFrameData(screenshot: screenshot, deviceFrame: deviceFrame, deviceFrameOffset: deviceFrameOffset)
         return pngData.flatMap { NSImage(data: $0) }
     }
 
-    public static func makeDeviceFrameData(screenshot: NSImage, deviceFrame: NSImage, layout: LayoutProvider) -> Data? {
+    public static func makeDeviceFrameData(screenshot: NSImage, deviceFrame: NSImage, deviceFrameOffset: CGSize) -> Data? {
         let deviceFrameView = DeviceFrameView(
             deviceFrame: deviceFrame,
             screenshot: screenshot,
-            offset: layout.deviceFrameOffset
+            offset: deviceFrameOffset
         )
         let view = NSHostingView(rootView: deviceFrameView)
         view.frame = CGRect(x: 0, y: 0, width: pixel(deviceFrame.size.width), height: pixel(deviceFrame.size.height))
