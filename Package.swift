@@ -39,8 +39,5 @@ let package = Package(
                 .target(name: "FrameKitCLI")
             ]
         ),
-    ],
-    swiftLanguageVersions: [
-        .version("5.7")
     ]
 )
