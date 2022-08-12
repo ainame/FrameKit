@@ -19,6 +19,11 @@ public struct DeviceFrame {
     }
 
     public static func makeDeviceFrameImage(screenshot: NSImage, deviceFrame: NSImage, layout: LayoutProvider) -> NSImage? {
+        let pngData = makeDeviceFrameData(screenshot: screenshot, deviceFrame: deviceFrame, layout: layout)
+        return pngData.flatMap { NSImage(data: $0) }
+    }
+
+    public static func makeDeviceFrameData(screenshot: NSImage, deviceFrame: NSImage, layout: LayoutProvider) -> Data? {
         let deviceFrameView = DeviceFrameView(
             deviceFrame: deviceFrame,
             screenshot: screenshot,
@@ -28,7 +33,6 @@ public struct DeviceFrame {
         view.frame = CGRect(x: 0, y: 0, width: pixel(deviceFrame.size.width), height: pixel(deviceFrame.size.height))
 
         // Use png here to use alpha layer
-        let pngData = convertToImage(view: view, format: .png)
-        return pngData.flatMap { NSImage(data: $0) }
+        return convertToImage(view: view, format: .png)
     }
 }
