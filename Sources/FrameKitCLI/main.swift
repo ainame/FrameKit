@@ -1,3 +1,0 @@
-import FrameKitCLILib
-
-Command.main()

@@ -4,6 +4,7 @@ import FrameKit
 import SampleFrameKitLayout
 import enum SwiftUI.LayoutDirection
 
+@main
 public struct Command: ParsableCommand {
     public static var configuration: CommandConfiguration {
         CommandConfiguration(commandName: "frameit")
