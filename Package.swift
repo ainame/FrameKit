@@ -10,9 +10,7 @@ let package = Package(
     ],
     products: [
         .executable(name: "framekit", targets: ["FrameKitCLI"]),
-        .library(name: "DefaultFrameKitLayout", targets: ["DefaultFrameKitLayout"]),
         .library(name: "FrameKit", targets: ["FrameKit"]),
-        .library(name: "FrameKitCLILib", targets: ["FrameKitCLILib"]),
     ],
     dependencies: [
         // Dependencies declare other packages that this package depends on.
@@ -26,19 +24,19 @@ let package = Package(
             dependencies: [
                 .target(name: "FrameKit"),
                 .target(name: "FrameKitCLILib"),
-                .target(name: "DefaultFrameKitLayout"),
+                .target(name: "SampleFrameKitLayout"),
             ]
         ),
         .target(
             name: "FrameKitCLILib",
             dependencies: [
                 .target(name: "FrameKit"),
-                .target(name: "DefaultFrameKitLayout"),
+                .target(name: "SampleFrameKitLayout"),
                 .product(name: "ArgumentParser", package: "swift-argument-parser"),
             ]
         ),
         .target(
-            name: "DefaultFrameKitLayout",
+            name: "SampleFrameKitLayout",
             dependencies: [
                 .target(name: "FrameKit"),
             ]

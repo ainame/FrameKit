@@ -1,7 +1,7 @@
 import SwiftUI
 import FrameKit
 
-public struct DefaultLayout: LayoutProvider {
+public struct SampleLayout: LayoutProvider {
     public let size: CGSize
     public let deviceFrameOffset: CGSize
     public let textInsets: EdgeInsets

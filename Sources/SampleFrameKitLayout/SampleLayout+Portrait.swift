@@ -1,7 +1,7 @@
 import SwiftUI
 import FrameKit
 
-extension DefaultLayout {
+extension SampleLayout {
     public static let defaultBackgroundColor = Color(red: 255 / 255, green: 153 / 255, blue: 51 / 255)
 
     public static let iPhone65 = Self(
@@ -53,7 +53,7 @@ extension DefaultLayout {
     )
 }
 
-extension DefaultLayout {
+extension SampleLayout {
     public static let iPhone65Hero = Self(
         size: CGSize(width: pixel(1242), height: pixel(2688)),
         deviceFrameOffset: .zero,

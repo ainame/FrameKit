@@ -1,7 +1,7 @@
 import ArgumentParser
 import AppKit
 import FrameKit
-import DefaultFrameKitLayout
+import SampleFrameKitLayout
 import enum SwiftUI.LayoutDirection
 
 public struct Command: ParsableCommand {
@@ -10,9 +10,9 @@ public struct Command: ParsableCommand {
     }
 
     @Option(name: [.customShort("L"), .customLong("layout")],
-            help: "\(DefaultLayoutOption.allCases.map({ "\"\($0.rawValue)\"" }).joined(separator: ", "))",
-            completion: .list(DefaultLayoutOption.allCases.map(\.rawValue)))
-    var layout: DefaultLayoutOption
+            help: "\(SampleLayoutOption.allCases.map({ "\"\($0.rawValue)\"" }).joined(separator: ", "))",
+            completion: .list(SampleLayoutOption.allCases.map(\.rawValue)))
+    var layout: SampleLayoutOption
 
     @Option(name: .shortAndLong, help: "A target locale's identifier to be used to adjust layout within view")
     var locale: String
@@ -68,7 +68,7 @@ extension Command {
             )
         })
 
-        let content = DefaultContent(
+        let content = SampleContent(
             locale: Locale(identifier: locale),
             keyword: keyword,
             title: title,
@@ -78,9 +78,9 @@ extension Command {
 
         let storeScreenshot: any StoreScreenshotView
         if isHero {
-            storeScreenshot = DefaultHeroStoreScreenshotView.makeView(layout: layout, content: content)
+            storeScreenshot = SampleHeroStoreScreenshotView.makeView(layout: layout, content: content)
         } else {
-            storeScreenshot = DefaultStoreScreenshotView.makeView(layout: layout, content: content)
+            storeScreenshot = SampleStoreScreenshotView.makeView(layout: layout, content: content)
         }
 
         let render = StoreScreenshotRenderer(outputPath: output, layoutDirection: layoutDirection)

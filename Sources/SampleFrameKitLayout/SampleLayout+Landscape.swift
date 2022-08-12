@@ -1,9 +1,9 @@
 import SwiftUI
 import FrameKit
 
-extension DefaultLayout {
-    func layout(with newSize: CGSize) -> DefaultLayout {
-        DefaultLayout(
+extension SampleLayout {
+    func layout(with newSize: CGSize) -> SampleLayout {
+        SampleLayout(
             size: newSize,
             deviceFrameOffset: deviceFrameOffset,
             textInsets: textInsets,
@@ -17,7 +17,7 @@ extension DefaultLayout {
     }
 }
 
-extension DefaultLayout {
+extension SampleLayout {
     public static let iPhone65Landscape = iPhone65.layout(with: CGSize(width: iPhone65.size.height, height: iPhone65.size.width))
 
     public static let iPhone55Landscape = iPhone55.layout(with: CGSize(width: iPhone55.size.height, height: iPhone55.size.width))
@@ -29,7 +29,7 @@ extension DefaultLayout {
     )
 }
 
-extension DefaultLayout {
+extension SampleLayout {
     public static let iPhone65HeroLandscape = iPhone65Hero.layout(
         with: CGSize(width: iPhone65Hero.size.height, height: iPhone65Hero.size.width)
     )

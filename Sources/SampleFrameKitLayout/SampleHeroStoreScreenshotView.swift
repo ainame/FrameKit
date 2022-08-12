@@ -2,17 +2,17 @@ import AppKit
 import FrameKit
 import SwiftUI
 
-public struct DefaultHeroStoreScreenshotView: StoreScreenshotView {
-    public let layout: DefaultLayout
-    public let content: DefaultContent
+public struct SampleHeroStoreScreenshotView: StoreScreenshotView {
+    public let layout: SampleLayout
+    public let content: SampleContent
 
-    public static func makeView(layout: DefaultLayout, content: DefaultContent) -> Self {
+    public static func makeView(layout: SampleLayout, content: SampleContent) -> Self {
         Self(layout: layout, content: content)
     }
 
     public init(
-        layout: DefaultLayout,
-        content: DefaultContent
+        layout: SampleLayout,
+        content: SampleContent
     ) {
         self.layout = layout
         self.content = content

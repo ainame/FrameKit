@@ -1,9 +1,9 @@
 import ArgumentParser
-import DefaultFrameKitLayout
+import SampleFrameKitLayout
 import Foundation
 import FrameKit
 
-public enum DefaultLayoutOption: String, RawRepresentable, ExpressibleByArgument, LayoutProviderOption {
+public enum SampleLayoutOption: String, RawRepresentable, ExpressibleByArgument, LayoutProviderOption {
     case iPhone65 = "iphone_65"
     case iPhone55 = "iphone_55"
     case iPadPro = "ipad_pro"
@@ -26,7 +26,7 @@ public enum DefaultLayoutOption: String, RawRepresentable, ExpressibleByArgument
         self.init(rawValue: argument)
     }
 
-    public var value: DefaultLayout {
+    public var value: SampleLayout {
         switch self {
         case .iPadPro: return .iPadPro
         case .iPadPro3rdGen: return .iPadPro3rdGen
