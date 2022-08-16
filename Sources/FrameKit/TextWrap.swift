@@ -11,7 +11,7 @@ public struct TextWrap {
     ///   - separator: Character to separate words in scripts. Depending on languages, this can be blank string, like Japanese, Chinese, etc
     ///   - numberOfLines: number of lines to break up the input
     /// - Returns: A String including breaklines that break up a given script up to given number
-    public static func wrapTextEqually(input: String, separator: String = " ", into numberOfLines: Int = 3) -> String {
+    public static func wrapTextEqually(_ input: String, separator: String = " ", into numberOfLines: Int = 3) -> String {
         let words = input.split { char in
             CharacterSet.whitespaces.contains(char.unicodeScalars[char.unicodeScalars.startIndex])
         }
