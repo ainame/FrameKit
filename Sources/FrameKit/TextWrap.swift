@@ -1,5 +1,6 @@
 import Foundation
 import Algorithms
+import NaturalLanguage
 
 public struct TextWrap {
     /// Return a String including breaklines that break up a given script up to given number. This is useful to
@@ -12,10 +13,7 @@ public struct TextWrap {
     ///   - numberOfLines: number of lines to break up the input
     /// - Returns: A String including breaklines that break up a given script up to given number
     public static func wrapTextEqually(_ input: String, into numberOfLines: Int, using separator: String = " ") -> String {
-        let words = input.split { char in
-            CharacterSet.whitespaces.contains(char.unicodeScalars[char.unicodeScalars.startIndex])
-        }
-
+        let words = splitByWord(input)
         let separatePatterns = words.indices.combinations(ofCount: numberOfLines - 1)
         var scores: [[String]: Double] = [:]
         var best: [String] = []
@@ -36,7 +34,7 @@ public struct TextWrap {
             }
 
             // Store score
-            let score = stdev(of: lines)
+            let score = evaluate(lines)
             scores[lines] = score
 
             // Update best pattern
@@ -66,8 +64,30 @@ public struct TextWrap {
         return best.joined(separator: "\n")
     }
 
-    private static func stdev(of lines: [String]) -> Double {
-        let values = lines.map(\.count).map(Double.init)
+    // Use NSTagger to split a text into words.
+    // This is not achivable for `String.split(separator:)` for Chinese or Japanese text
+    private static func splitByWord(_ input: String) -> [Substring] {
+        var words = [Substring]()
+        let tagger = NLTagger(tagSchemes: [.lexicalClass])
+        tagger.string = input
+        tagger.enumerateTags(
+            in: input.startIndex..<input.endIndex,
+            unit: .word,
+            scheme: .lexicalClass,
+            options: [.omitPunctuation, .omitWhitespace]
+        ) { (tag, range) -> Bool in
+            words.append(input[range])
+            return true
+        }
+        return words
+    }
+
+    private static func evaluate(_ lines: [String]) -> Double {
+        let charCounts = lines.map(\.count).map(Double.init)
+        return stdev(of: charCounts)
+    }
+
+    private static func stdev(of values: [Double]) -> Double {
         // https://github.com/apple/swift-argument-parser/blob/898d1ae9dd7d9ff9af39e66bea744d52f69df2e3/Examples/math/Math.swift#L174-L180
         let sum: Double = values.reduce(0, +)
         let mean = sum / Double(values.count)
