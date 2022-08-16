@@ -13,11 +13,15 @@ let package = Package(
         .library(name: "FrameKit", targets: ["FrameKit"]),
     ],
     dependencies: [
-        .package(url: "https://github.com/apple/swift-argument-parser", from: "0.2.0"),
+        .package(url: "https://github.com/apple/swift-argument-parser", from: "0.5.0"),
+        .package(url: "https://github.com/apple/swift-algorithms", from: "1.0.0")
     ],
     targets: [
         .target(
-            name: "FrameKit"
+            name: "FrameKit",
+            dependencies: [
+                .product(name: "Algorithms", package: "swift-algorithms")
+            ]
         ),
         .executableTarget(
             name: "FrameKitCLI",
