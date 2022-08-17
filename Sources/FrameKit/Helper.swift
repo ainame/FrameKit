@@ -6,6 +6,7 @@ public func absolutePath(_ relativePath: String) -> String {
 }
 
 // Helper to work out numbers in `point` unit from numbers in `pixel`
+@available(*, deprecated, message: "Just remove this helper. Now FrameKit use point unit that matches pixel.")
 public func pixel(_ point: CGFloat, scale: CGFloat = 1.0) -> CGFloat {
     point / scale
 }
