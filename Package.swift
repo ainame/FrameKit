@@ -9,7 +9,7 @@ let package = Package(
         .macOS(.v10_15)
     ],
     products: [
-        .executable(name: "framekit", targets: ["FrameKitCLI"]),
+        .executable(name: "framekit", targets: ["SampleFrameKitCLI"]),
         .library(name: "FrameKit", targets: ["FrameKit"]),
     ],
     dependencies: [
@@ -24,7 +24,7 @@ let package = Package(
             ]
         ),
         .executableTarget(
-            name: "FrameKitCLI",
+            name: "SampleFrameKitCLI",
             dependencies: [
                 .target(name: "FrameKit"),
                 .target(name: "SampleFrameKitLayout"),
@@ -40,7 +40,7 @@ let package = Package(
         .testTarget(
             name: "FrameKitCLITests",
             dependencies: [
-                .target(name: "FrameKitCLI")
+                .target(name: "SampleFrameKitCLI")
             ]
         ),
     ]
