@@ -19,6 +19,7 @@ public struct StoreScreenshotRenderer {
             width: storeScreenshotView.layout.size.width,
             height: storeScreenshotView.layout.size.height
         )
+        view.layer?.contentsScale = 1.0
 
         // Output jpeg image to specified outputPath
         guard let jpegData = convertToImage(view: view, format: .jpeg) else {

@@ -6,7 +6,7 @@ public func absolutePath(_ relativePath: String) -> String {
 }
 
 // Helper to work out numbers in `point` unit from numbers in `pixel`
-public func pixel(_ point: CGFloat, scale: CGFloat = 2.0) -> CGFloat {
+public func pixel(_ point: CGFloat, scale: CGFloat = 1.0) -> CGFloat {
     point / scale
 }
 
