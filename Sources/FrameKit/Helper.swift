@@ -9,6 +9,8 @@ func convertToImage(view: NSView, format: NSBitmapImageRep.FileType) -> Data? {
     guard let bitmapRepresentation = view.bitmapImageRepForCachingDisplay(in: view.frame) else {
         return nil
     }
+    bitmapRepresentation.pixelsHigh = Int(view.frame.size.height)
+    bitmapRepresentation.pixelsWide = Int(view.frame.size.width)
     bitmapRepresentation.size = view.frame.size
     view.cacheDisplay(in: view.frame, to: bitmapRepresentation)
     return bitmapRepresentation.representation(using: format, properties: [:])
