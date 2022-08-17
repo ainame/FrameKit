@@ -3,15 +3,16 @@ import SwiftUI
 
 // Main function that supports both CLI and Swift Playground
 public struct DeviceFrame {
-    public static func makeImage(screenshot: String, deviceFrame: String, deviceFrameOffset: CGSize) -> NSImage? {
+    public enum Error: Swift.Error {
+        case fileNotFound(String)
+    }
+    public static func makeImage(screenshot: String, deviceFrame: String, deviceFrameOffset: CGSize) throws -> NSImage? {
         guard let screenshotImage = NSImage(contentsOfFile: absolutePath(screenshot)) else {
-            logError("screenshot was not found at \(screenshot)")
-            return nil
+            throw Error.fileNotFound("screenshot was not found at \(screenshot)")
         }
 
         guard let deviceFrameImage = NSImage(contentsOfFile: absolutePath(deviceFrame)) else {
-            logError("device frame was not found at \(deviceFrame)")
-            return nil
+            throw Error.fileNotFound("device frame was not found at \(deviceFrame)")
         }
 
         // Device frame's image needs to be generted separaratedly to make framing logic easy
