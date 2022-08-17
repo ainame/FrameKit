@@ -34,7 +34,8 @@ public struct DeviceFrame {
             offset: deviceFrameOffset
         )
         let view = NSHostingView(rootView: deviceFrameView)
-        view.frame = CGRect(x: 0, y: 0, width: pixel(deviceFrame.size.width), height: pixel(deviceFrame.size.height))
+        view.layer?.contentsScale = 1.0
+        view.frame = CGRect(x: 0, y: 0, width: deviceFrame.size.width, height: deviceFrame.size.height)
 
         // Use png here to use alpha layer
         return convertToImage(view: view, format: .png)

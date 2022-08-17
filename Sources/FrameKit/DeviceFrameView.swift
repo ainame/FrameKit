@@ -18,13 +18,13 @@ public struct DeviceFrameView: View {
     public var body: some View {
         // Two images are combined by overlapping each other on ZStack
         ZStack {
-            Image(nsImage: self.screenshot)
+            Image(nsImage: screenshot)
                 .resizable()
-                .frame(width: pixel(self.screenshot.size.width), height: pixel(self.screenshot.size.height))
+                .frame(width: screenshot.size.width, height: screenshot.size.height)
                 .offset(self.offset)
-            Image(nsImage: self.deviceFrame)
+            Image(nsImage: deviceFrame)
                 .resizable()
-                .frame(width: pixel(self.deviceFrame.size.width), height: pixel(self.deviceFrame.size.height))
+                .frame(width: deviceFrame.size.width, height: deviceFrame.size.height)
         }
     }
 }
