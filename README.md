@@ -2,6 +2,10 @@
 
 A Swift macOS app libary that helps you build stunning App Store screenshots with SwiftUI. This library contains a collection of class/protocol that are required in making workflows to deal with mobile app's store screenshots.
 
+* [Why FrameKit?](https://github.com/ainame/FrameKit#why-framekit)
+* [Get started](https://github.com/ainame/FrameKit#get-started)
+* [References](https://github.com/ainame/FrameKit#references)
+
 ## Why FrameKit?
 
 ### What is Store Screenshots?
@@ -22,15 +26,15 @@ So why not automate the process?
 
 ### Why not fastlane frameit?
 
-Okay I know the pain but why don't you use [existing solution](https://docs.fastlane.tools/getting-started/ios/screenshots/) in [fastlane/fastlane](https://github.com/fastlane/fastlane)? fastlane snapshot + frameit is the way to go automation, isn't it?  
+Okay I know the pain but why don't you use [existing solution](https://docs.fastlane.tools/getting-started/ios/screenshots/) in [fastlane/fastlane](https://github.com/fastlane/fastlane)? fastlane snapshot + frameit is the way to go automation, isn't it?
 
 There's a couple of reasons not to use fastlane for screenshots. Basically fastlane frameit is limtied.
 
 * Doesn't support Arabic proerply due to the underlying dependency (ImageMagick) https://github.com/fastlane/fastlane/issues/7522
-* Only supports 1 app screenshot per 1 store screenshot (Hero screenshot design tends to have multiple app screenshots) 
+* Only supports 1 app screenshot per 1 store screenshot (Hero screenshot design tends to have multiple app screenshots)
 * Even font size can't be fixed and it's dynamic
 * Hard to debug
-* Designers wouldn't be happy with limtied design achieved by frameit 
+* Designers wouldn't be happy with limtied design achieved by frameit
 
 ### What Framekit can help?
 
@@ -46,7 +50,7 @@ There's a couple of reasons not to use fastlane for screenshots. Basically fastl
 
 Although FrameKit doens't depend on fastlane itself, it's much easier for anyone to get device frame images via [fastlane/frameit-frames](https://github.com/fastlane/frameit-frames).
 
-Try either 
+Try either
 
 * Install `fastlane` via `gem install fastlane` or Bundler and then run `fastlane frameit download_frames`
    * It'll create `~/.fastlane/frameit/latest` directory
@@ -63,7 +67,7 @@ FrameKit itself is Swift Package Manager's package so you can install it via SPM
 At least you need to create following things by yourself.
 
 * SwiftUI's `View` that conforms to `StoreScreenshotView` protocol and implements the store screenshot design
-* `Layout` definition conforming `LayoutProvider` protocol, which mean to hold hardcoded any layout values for each screen size 
+* `Layout` definition conforming `LayoutProvider` protocol, which mean to hold hardcoded any layout values for each screen size
 * A `struct` to store screenshot contents; such as title or framed app screenshot images, which will be `StoreScreenshotView.Cotent`
 
 You can find how it can be from sample code at [`Source/SampleFrameKitLayout`](https://github.com/ainame/FrameKit/tree/main/Sources/SampleFrameKitLayout).
@@ -100,7 +104,7 @@ let framedScreenshot = try DeviceFrame.makeImage(
     deviceFrameOffset: layoutForiPhone65inch.deviceFrameOffset
 )
 
-// Arbitary struct to include contents to be rendered on store screenshtos 
+// Arbitary struct to include contents to be rendered on store screenshtos
 // This is what you need to define
 let content = SampleContent(
     keyword: "Weather",
@@ -111,7 +115,7 @@ let content = SampleContent(
 // Ininitialize the designed view that you defined
 let view = SampleStoreScreenshotView.makeView(layout: layoutForiPhone65inch, content: content)
 
-// Render the image into outputPath with this 
+// Render the image into outputPath with this
 let render = StoreScreenshotRenderer(outputPath: "./output.jpg", layoutDirection: .leftToRight)
 try render(view)
 ```
@@ -124,3 +128,11 @@ See the official documents
 
 * App Store https://help.apple.com/app-store-connect/#/devd274dd925
 * Google Play https://support.google.com/googleplay/android-developer/answer/9866151?hl=en#zippy=%2Cscreenshots
+
+### Acknowledgment
+
+Although I decided not to go with fastlane frameit, I started this screeshot work with it and it inspired me a lot.
+Thank you very much for people contributing frameit.
+
+And also many works in this repo involved working time at [Cookpad](https://careers.cookpad.com/).
+Thank you very much for allowing me to work on this.
