@@ -38,9 +38,9 @@ let package = Package(
             ]
         ),
         .testTarget(
-            name: "FrameKitCLITests",
+            name: "FrameKitTests",
             dependencies: [
-                .target(name: "SampleFrameKitCLI")
+                .target(name: "FrameKit")
             ]
         ),
     ]

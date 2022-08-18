@@ -44,8 +44,9 @@ public struct TextWrap {
             } else if score == bestScore {
                 // if the score is same, choose the most centresied one.
                 if numberOfLines.isMultiple(of: 2) {
-                    let bestScore2 = best[numberOfLines/2].count + best[(numberOfLines/2) + 1].count
-                    let score2 = lines[numberOfLines/2].count + lines[(numberOfLines/2) + 1].count
+                    let maxIndex = numberOfLines - 1
+                    let bestScore2 = best[maxIndex/2].count + best[(maxIndex/2) + 1].count
+                    let score2 = lines[maxIndex/2].count + lines[(maxIndex/2) + 1].count
                     if bestScore2 < score2 {
                         best = lines
                         bestScore = score
