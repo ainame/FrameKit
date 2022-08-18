@@ -61,8 +61,8 @@ extension Command {
         let layout = layout.value
 
         // Device frame's image needs to be generted separaratedly to make framing logic easy
-        let framedScreenshots = screenshots.compactMap({ screenshot in
-            DeviceFrame.makeImage(
+        let framedScreenshots = try screenshots.compactMap({ screenshot in
+            try DeviceFrame.makeImage(
                 screenshot: absolutePath(screenshot),
                 deviceFrame: absolutePath(deviceFrame),
                 deviceFrameOffset: layout.deviceFrameOffset
@@ -77,14 +77,11 @@ extension Command {
             framedScreenshots: framedScreenshots
         )
 
-        let storeScreenshot: any StoreScreenshotView
-        if isHero {
-            storeScreenshot = SampleHeroStoreScreenshotView.makeView(layout: layout, content: content)
-        } else {
-            storeScreenshot = SampleStoreScreenshotView.makeView(layout: layout, content: content)
-        }
-
         let render = StoreScreenshotRenderer(outputPath: output, layoutDirection: layoutDirection)
-        render(storeScreenshot)
+        if isHero {
+            try render(SampleHeroStoreScreenshotView.makeView(layout: layout, content: content))
+        } else {
+            try render(SampleStoreScreenshotView.makeView(layout: layout, content: content))
+        }
     }
 }
