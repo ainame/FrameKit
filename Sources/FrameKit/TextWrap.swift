@@ -69,7 +69,7 @@ public struct TextWrap {
     // This is not achivable for `String.split(separator:)` for Chinese or Japanese text
     private static func splitByWord(_ input: String) -> [Substring] {
         var words = [Substring]()
-        let tokenizer = NLTokenizer(unit: .word)
+        let tokenizer = NLTokenizer(unit: .sentence)
         tokenizer.string = input
         tokenizer.enumerateTokens(in: input.startIndex..<input.endIndex) { (range, attribute) -> Bool in
             words.append(input[range])
