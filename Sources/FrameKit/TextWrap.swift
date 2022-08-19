@@ -19,21 +19,27 @@ public struct TextWrap {
         var best: [String] = []
         var bestScore: Double = .infinity
 
-    outherLoop: for separateIndexes in separatePatterns {
+        outerLoop: for separateIndexes in separatePatterns {
+            print(separateIndexes)
             var startIndex = wordsAndTags.startIndex
-            var lines: [String] = []
+            var linesAndTags: [Array<(Substring, NLTag?)>.SubSequence] = []
             for separateIndex in separateIndexes {
-                // If a line starts from punctuation, it's wrong and is skipped.
-                if wordsAndTags[startIndex].1 == NLTag.punctuation || wordsAndTags[startIndex].1 == NLTag.otherPunctuation {
-                    break outherLoop
-                }
-
-                let subsequence = wordsAndTags[startIndex...separateIndex].map(\.0)
-                lines.append(subsequence.joined(separator: separator))
+                let subsequence = wordsAndTags[startIndex...separateIndex]
+                linesAndTags.append(subsequence)
                 startIndex = separateIndex.advanced(by: 1)
             }
-            lines.append(wordsAndTags[startIndex..<wordsAndTags.endIndex].map(\.0).joined(separator: separator))
+            linesAndTags.append(wordsAndTags[startIndex..<wordsAndTags.endIndex])
 
+            // If a line starts from punctuation, it's wrong and is skipped.
+            for linesAndTag in linesAndTags {
+                let tag = linesAndTag.first?.1
+                if tag == NLTag.punctuation || tag == NLTag.otherPunctuation {
+                    // continue the loop for `separateIndexes in separatePatterns`
+                    continue outerLoop
+                }
+            }
+
+            let lines: [String] = linesAndTags.map { $0.map(\.0).joined(separator: separator) }
             if lines.contains("") {
                 continue
             }
@@ -76,7 +82,12 @@ public struct TextWrap {
         var wordsAndTags = [(Substring, NLTag?)]()
         let tagger = NLTagger(tagSchemes: [.lexicalClass])
         tagger.string = input
-        tagger.enumerateTags(in: input.startIndex..<input.endIndex, unit: .word, scheme: .lexicalClass) { tag, range in
+        tagger.enumerateTags(
+            in: input.startIndex..<input.endIndex,
+            unit: .word,
+            scheme: .lexicalClass,
+            options: [.omitWhitespace]
+        ) { tag, range in
             wordsAndTags.append((input[range], tag))
             return true
         }
