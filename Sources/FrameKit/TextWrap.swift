@@ -13,21 +13,26 @@ public struct TextWrap {
     ///   - numberOfLines: number of lines to break up the input
     /// - Returns: A String including breaklines that break up a given script up to given number
     public static func wrapTextEqually(_ input: String, into numberOfLines: Int, using separator: String = " ") -> String {
-        let words = splitByWord(input)
-        let separatePatterns = words.indices.combinations(ofCount: numberOfLines - 1)
+        let wordsAndTags:[(Substring, NLTag?)] = splitByWord(input)
+        let separatePatterns = wordsAndTags.indices.combinations(ofCount: numberOfLines - 1)
         var scores: [[String]: Double] = [:]
         var best: [String] = []
         var bestScore: Double = .infinity
 
-        for separateIndexes in separatePatterns {
-            var startIndex = words.startIndex
+    outherLoop: for separateIndexes in separatePatterns {
+            var startIndex = wordsAndTags.startIndex
             var lines: [String] = []
             for separateIndex in separateIndexes {
-                let subsequence = words[startIndex...separateIndex]
+                // If a line starts from punctuation, it's wrong and is skipped.
+                if wordsAndTags[startIndex].1 == NLTag.punctuation || wordsAndTags[startIndex].1 == NLTag.otherPunctuation {
+                    break outherLoop
+                }
+
+                let subsequence = wordsAndTags[startIndex...separateIndex].map(\.0)
                 lines.append(subsequence.joined(separator: separator))
                 startIndex = separateIndex.advanced(by: 1)
             }
-            lines.append(words[startIndex..<words.endIndex].joined(separator: separator))
+            lines.append(wordsAndTags[startIndex..<wordsAndTags.endIndex].map(\.0).joined(separator: separator))
 
             if lines.contains("") {
                 continue
@@ -67,15 +72,15 @@ public struct TextWrap {
 
     // Use NSTagger to split a text into words.
     // This is not achivable for `String.split(separator:)` for Chinese or Japanese text
-    private static func splitByWord(_ input: String) -> [Substring] {
-        var words = [Substring]()
-        let tokenizer = NLTokenizer(unit: .sentence)
-        tokenizer.string = input
-        tokenizer.enumerateTokens(in: input.startIndex..<input.endIndex) { (range, attribute) -> Bool in
-            words.append(input[range])
+    private static func splitByWord(_ input: String) -> [(Substring, NLTag?)] {
+        var wordsAndTags = [(Substring, NLTag?)]()
+        let tagger = NLTagger(tagSchemes: [.lexicalClass])
+        tagger.string = input
+        tagger.enumerateTags(in: input.startIndex..<input.endIndex, unit: .word, scheme: .lexicalClass) { tag, range in
+            wordsAndTags.append((input[range], tag))
             return true
         }
-        return words
+        return wordsAndTags
     }
 
     private static func evaluate(_ lines: [String]) -> Double {

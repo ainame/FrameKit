@@ -7,6 +7,6 @@ final class TextWrapTests: XCTestCase {
     }
 
     func test_tokenize_sentenceIncludingPunctuation() throws {
-        XCTAssertEqual(TextWrap.wrapTextEqually("あいう、えお", into: 2, using: ""), "あいう、\nえお")
+        XCTAssertEqual(TextWrap.wrapTextEqually("あいう、えお", into: 2, using: ""), "あいう\n、えお")
     }
 }
