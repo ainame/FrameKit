@@ -1,11 +1,18 @@
 import AppKit
 import SwiftUI
 
-// Main function that supports both CLI and Swift Playground
+/// `DeviceFrame` provides a way to embed app screenshot into device frame image.
 public struct DeviceFrame {
     public enum Error: Swift.Error {
         case fileNotFound(String)
     }
+
+    /// To make an NSImage object that has image combining store screenshot and device frame image togther
+    /// - Parameters:
+    ///   - screenshot: A relative or absolute path to app screenshot image file
+    ///   - deviceFrame: A relative or absolute path to device frame image file
+    ///   - deviceFrameOffset: Offset to adjust the position of app screenshot
+    /// - Returns: an image object. `nil` if something went wrong.
     public static func makeImage(screenshot: String, deviceFrame: String, deviceFrameOffset: CGSize) throws -> NSImage? {
         guard let screenshotImage = NSImage(contentsOfFile: absolutePath(screenshot)) else {
             throw Error.fileNotFound("screenshot was not found at \(screenshot)")

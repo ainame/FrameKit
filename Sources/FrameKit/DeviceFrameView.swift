@@ -1,5 +1,11 @@
 import SwiftUI
 
+/// The SwiftUI View struct that is used in `DeviceImage`.
+///
+/// Currently this view layout relies on the fact that iPhone's vessel size match other side of it.
+/// So that we can simply put a screenshot image onto the center of a device frame image! Thanks, Steve.
+/// If we need to deal with asymmetry devices or images (e.g. iPhone 5c having lock button on its top),
+/// we need to adjust the position of screenshot with offset to account of buttons.
 public struct DeviceFrameView: View {
     public let deviceFrame: NSImage
     public let screenshot: NSImage
@@ -11,10 +17,6 @@ public struct DeviceFrameView: View {
         self.offset = offset
     }
 
-    // Currently this view layout relies on the fact that iPhone's vessel size match other side of it.
-    // So that we can simply put a screenshot image onto the center of a device frame image! Thanks, Steve.
-    // If we need to deal with asymmetry devices or images (e.g. iPhone 5c having lock button on its top),
-    // we need to adjust the position of screenshot with offset to account of buttons.
     public var body: some View {
         // Two images are combined by overlapping each other on ZStack
         ZStack {
