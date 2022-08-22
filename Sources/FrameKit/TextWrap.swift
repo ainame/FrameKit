@@ -20,7 +20,6 @@ public struct TextWrap {
         var bestScore: Double = .infinity
 
         outerLoop: for separateIndexes in separatePatterns {
-            print(separateIndexes)
             var startIndex = wordsAndTags.startIndex
             var linesAndTags: [Array<(Substring, NLTag?)>.SubSequence] = []
             for separateIndex in separateIndexes {
