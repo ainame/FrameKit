@@ -30,9 +30,9 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
+      - run: mkdir ./docs 
       - name: Generate DocC docs
-        run: |
-        mkdir ./docs
+         run: |
         swift package \
           generate-documentation \
           --allow-writing-to-directory ./docs \
