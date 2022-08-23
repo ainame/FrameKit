@@ -39,6 +39,7 @@ jobs:
             generate-documentation \
             --target FrameKit \
             --transform-for-static-hosting \
+            --hosting-base-path FrameKit
             --output-path ./docs
       - name: Setup Pages
         uses: actions/configure-pages@v1
