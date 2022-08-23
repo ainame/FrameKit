@@ -32,13 +32,13 @@ jobs:
         uses: actions/checkout@v3
       - run: mkdir ./docs 
       - name: Generate DocC docs
-         run: |
-        swift package \
-          generate-documentation \
-          --allow-writing-to-directory ./docs \
-          --target FrameKit \
-          --transform-for-static-hosting \
-          --output-path ./docs
+        run: |
+          swift package \
+            generate-documentation \
+            --allow-writing-to-directory ./docs \
+            --target FrameKit \
+            --transform-for-static-hosting \
+            --output-path ./docs
       - name: Setup Pages
         uses: actions/configure-pages@v1
       - name: Upload artifact
