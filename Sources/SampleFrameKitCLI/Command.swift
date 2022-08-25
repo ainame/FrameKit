@@ -77,7 +77,7 @@ extension Command {
             framedScreenshots: framedScreenshots
         )
 
-        let render = StoreScreenshotRenderer(outputPath: output, layoutDirection: layoutDirection)
+        let render = StoreScreenshotRenderer(outputPath: output, imageFormat: .jpeg, layoutDirection: layoutDirection)
         if isHero {
             try render(SampleHeroStoreScreenshotView.makeView(layout: layout, content: content))
         } else {
